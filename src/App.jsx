@@ -10,6 +10,10 @@ class App extends Component {
     }
   }
 
+  changedeadlline(){
+    this.setState({deadline: 'November 25, 2017'})
+  }
+
   render() {
     return (
       <div className="App">
@@ -24,7 +28,7 @@ class App extends Component {
         </div>
         <div>
           <input placeholder='new date' />
-          <button>Submit</button>
+          <button onClick={() => this.changedeadlline()}>Submit</button>
         </div>
       </div>
     )
