@@ -19,6 +19,7 @@ class App extends Component {
       <div className="App">
         <h2>Just some sample data: {this.yourname} </h2>
         <p> { this.sayhello("Rajesh") } </p>
+        <h2> Time is: { (new Date()).toLocaleTimeString() } </h2>
       </div>
     );
   }
