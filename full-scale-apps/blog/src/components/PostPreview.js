@@ -13,8 +13,8 @@ class PostPreview extends Component {
           </h3>
         </a>
         <p className="post-meta">Posted by
-          <a href="#">Start Bootstrap</a>
-          on September 24, 2017</p>
+          <a href="#"> Start Bootstrap </a>
+           on September 24, 2017</p>
       </div>
     );
   }
