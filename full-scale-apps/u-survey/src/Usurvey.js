@@ -17,7 +17,7 @@ class Usurvey extends Component {
   nameSubmit(event){
     let studentName = this.refs.name.value;
     this.setState({studentName: studentName}, function(){
-      console.log(this.state)
+      console.log(this.state);
     });
   }
 
@@ -32,14 +32,19 @@ class Usurvey extends Component {
     else if(event.target.name === 'answer3'){
       answers.answer3 = event.target.value;
     }
-    
+
     this.setState({answers: answers}, ()=>{
       console.log(this.state);
     });
   }
 
   questionSubmit(){
-
+    firebase.database().ref('uSurvey/'+this.state.uid).set({
+      studentName: this.state.studentName,
+      answers: this.state.answers
+    });
+    this.setState({isSubmitted: true});
+    alert("questions submitted");
   }
 
   constructor(props){
@@ -47,7 +52,7 @@ class Usurvey extends Component {
 
     this.state = {
       uid: uuid.v1(),
-      studentName: 'something',
+      studentName: '',
       answers: {
         answer1: '',
         answer2: '',
