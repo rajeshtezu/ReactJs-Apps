@@ -30,6 +30,31 @@ class Authen extends Component {
     });
   }
 
+  signup(){
+    const email = this.refs.email.value;
+    const password = this.refs.password.value;
+    console.log(email, password);
+
+    const auth = firebase.auth();
+
+    const promise = auth.createUserWithEmailAndPassword(email, password);
+
+    promise
+    .then(user => {
+      let err = "Welcome " + user.email;
+      firebase.database().ref('users/'+user.uid).set({
+        email: user.email
+      });
+      console.log(user);
+      this.setState({err: err});
+    })
+    .catch(e => {
+      let err = e.message;
+      console.log(err);
+      this.setState({err: err});
+    });
+  }
+
   constructor(props){
     super(props);
 
@@ -37,6 +62,7 @@ class Authen extends Component {
       err: ''
     };
     this.login = this.login.bind(this);
+    this.signup = this.signup.bind(this);
   }
 
   render(){
@@ -47,7 +73,7 @@ class Authen extends Component {
         <p>{this.state.err}</p>
 
         <button onClick={this.login}>Log In</button>
-        <button>Sign Up</button>
+        <button onClick={this.signup}>Sign Up</button>
         <button>Log Out</button>
       </div>
     );
